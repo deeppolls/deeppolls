@@ -1,61 +1,64 @@
-DeepPolls: Powered by Eliza 🤖
+# DeepPolls: Powered by Eliza 🤖
 
-📑 Technical Report |  📖 Documentation | 🎯 Examples
+<div align="center">
+  <img src="./docs/static/img/eliza_banner.jpg" alt="Eliza Banner" width="100%" />
+</div>
 
-Welcome to DeepPolls
+<div align="center">
 
-The DeepPolls Framework is built on ElizaOS, enabling AI agents to interact with users through poll-based decision-making. This unique system allows AI to evolve dynamically, shaped by community choices rather than just static logic.
+📑 [Technical Report](https://arxiv.org/pdf/2501.06781) |  📖 [Documentation](https://elizaos.github.io/eliza/) | 🎯 [Examples](https://github.com/thejoven/awesome-eliza)
 
-Key Components
+</div>
 
-Agents
+---
 
-AI-powered entities that engage users and make decisions.
+## Welcome to DeepPolls
 
-Built on ElizaOS (with planned support for ChatGPT, DeepSeek, and more).
+The **DeepPolls Framework** is built on [ElizaOS](https://github.com/elizaos/eliza), enabling AI agents to interact with users through **poll-based decision-making**. This unique system allows AI to evolve dynamically, shaped by community choices rather than just static logic.
 
-Adapt their behavior based on poll results.
+### **Key Components**
 
-Polls
+1. **Agents**  
+   - AI-powered entities that engage users and make decisions.  
+   - Built on ElizaOS (with planned support for ChatGPT, DeepSeek, and more).  
+   - Adapt their behavior based on poll results.
 
-The core mechanism for decision-making.
+2. **Polls**  
+   - The core mechanism for decision-making.  
+   - Created by agents and posted directly on Twitter using the Twitter API.  
+   - Community votes determine the agent’s next actions.
 
-Created by agents and posted directly on Twitter using the Twitter API.
+3. **Decision System**  
+   - Once a poll ends, the chosen outcome is permanently embedded into the agent.  
+   - AI behavior changes forever, ensuring continuous evolution.  
+   - Every decision “stacks” on top of previous ones, creating unique AI growth paths.
 
-Community votes determine the agent’s next actions.
+4. **$POLLS Token**  
+   - Used to fund development and expand the ecosystem.  
+   - Launched on [@pumpdotfun](https://twitter.com/pumpdotfun) with 5% reserved for devs.  
+   - Supports future integrations, including LLMs and decentralized AI governance.
 
-Decision System
-
-Once a poll ends, the chosen outcome is permanently embedded into the agent.
-
-AI behavior changes forever, ensuring continuous evolution.
-
-Every decision “stacks” on top of previous ones, creating unique AI growth paths.
-
-$POLLS Token
-
-Used to fund development and expand the ecosystem.
-
-Launched on @pumpdotfun with 5% reserved for devs.
-
-Supports future integrations, including LLMs and decentralized AI governance.
-
-Why DeepPolls?✅ Community-driven AI – Every decision is made by users, not developers.✅ Ever-evolving agents – AI doesn’t stay static; it adapts based on real interactions.✅ Decentralized decision-making – Future plans for on-chain governance using $POLLS.
+**Why DeepPolls?**  
+✅ **Community-driven AI** – Every decision is made by users, not developers.  
+✅ **Ever-evolving agents** – AI doesn’t stay static; it adapts based on real interactions.  
+✅ **Decentralized decision-making** – Future plans for on-chain governance using $POLLS.  
 
 DeepPolls is more than a framework—it’s the future of AI shaped by the people who use it. 🚀
 
-Extra Documentation: polls.js
+---
 
-The polls.js (or polls.ts) script is a practical example of how DeepPolls manages Twitter polls and adapts an AI agent based on community voting.
+## Extra Documentation: `polls.js`
 
-Chat Completion Example (Poll Use Case)
+The `polls.js` (or `polls.ts`) script is a practical example of how DeepPolls manages Twitter polls and adapts an AI agent based on community voting.
 
-Below is an example of how you might integrate an OpenAI Chat Completion into a DeepPolls scenario. In this example:
+### Chat Completion Example (Poll Use Case)
 
-The poll question is: "Is racism bad?" with two options: Yes (100%) and No (0%).
+Below is an **example** of how you might integrate an OpenAI Chat Completion into a DeepPolls scenario. In this example:
 
-We want the AI agent to parse these results, then generate new personality data in valid JSON.
+- The poll question is: **"Is racism bad?"** with two options: **Yes** (100%) and **No** (0%).  
+- We want the AI agent to parse these results, then generate new personality data in **valid JSON**.
 
+```ts
 import { OpenAI } from 'openai';
 
 // Example poll object
@@ -144,3 +147,165 @@ async function runExample() {
     console.error('Error during poll analysis:', error);
   }
 }
+In a real-world scenario, you would:
+
+Fetch the latest poll from Twitter instead of using a hardcoded pollExample.
+Pass the resulting poll object to analyzePollWithChatGPT.
+Update your Eliza or other agent config with the newly generated data from OpenAI.
+Restart or reload your agent to see the changes in effect.
+High-Level Code Flow
+Fetch the Latest Poll
+
+Uses the Twitter API to retrieve the most recent tweet containing a poll for a given username.
+Extracts poll info (ID, options, duration, etc.).
+Analyze the Poll
+
+Counts votes for each option (e.g., “Yes” vs. “No”).
+Create a Prompt & Call OpenAI
+
+Builds a custom prompt incorporating the poll question and results.
+Uses the openai.chat.completions.create method to send a request to GPT-3.5 (or GPT-4).
+Parse JSON Output
+
+The AI should return a strictly valid JSON object containing instructions to update the AI agent’s persona.
+Update Configuration
+
+The script reads the local Eliza config file (e.g., eliza.character.json).
+Appends or overwrites personality fields (bio, adjectives, style).
+Saves the file, effectively altering the agent’s future behavior.
+Restart Agent
+
+Reload the Eliza or DeepPolls agent so the changes are reflected during the next conversation or poll cycle.
+Twitter API Rate-Limiting
+Important: Free or Basic Twitter API tiers can be very restrictive. If your script checks polls frequently, you may encounter HTTP 429 (Too Many Requests) errors. Using a paid Twitter API plan is strongly recommended to avoid interruptions.
+
+🌍 README Translations
+中文说明 | 日本語の説明 | 한국어 설명 | Persian | Français | Português | Türkçe | Русский | Español | Italiano | ไทย | Deutsch | Tiếng Việt | עִברִית | Tagalog | Polski | Arabic | Hungarian | Srpski | Română | Nederlands | Ελληνικά
+
+🚩 Overview (ElizaOS)
+<div align="center"> <img src="./docs/static/img/eliza_diagram.png" alt="Eliza Diagram" width="100%" /> </div>
+DeepPolls builds on Eliza’s robust foundation:
+
+Discord, X (Twitter), Telegram connectors
+Support for multiple LLMs (Llama, Grok, OpenAI, Anthropic, Gemini, etc.)
+Multi-agent and multi-room support
+Easy ingestion of documents for retrieval
+Retrievable memory
+Highly extensible with custom actions and clients
+🎯 Use Cases
+Poll-driven AI Agents
+Community-driven Chatbots
+Game NPCs that evolve with polls
+Business processes that require consensus-driven updates
+🚀 Quick Start
+Prerequisites
+Python 2.7+
+Node.js 23+
+pnpm
+Note for Windows Users: WSL 2 is required for certain features.
+
+Recommended Start
+bash
+Copy
+Edit
+git clone https://github.com/elizaos/eliza-starter.git
+cd eliza-starter
+cp .env.example .env
+pnpm i && pnpm build && pnpm start
+This will install all dependencies and start Eliza (which DeepPolls extends).
+
+Manually Start Eliza (Advanced)
+Clone & Checkout Latest Release
+bash
+Copy
+Edit
+git clone https://github.com/elizaos/eliza.git
+cd eliza
+git checkout $(git describe --tags --abbrev=0)
+Edit Environment
+bash
+Copy
+Edit
+cp .env.example .env
+Start
+bash
+Copy
+Edit
+pnpm i
+pnpm build
+pnpm start
+Clean (if needed)
+bash
+Copy
+Edit
+pnpm clean
+Interact via Browser
+After Eliza starts, you can run:
+
+bash
+Copy
+Edit
+pnpm start:client
+and open the displayed URL to chat with your agent in a web UI.
+
+Modify Character
+Default Character
+Open packages/core/src/defaultCharacter.ts to make changes.
+
+Load Custom Characters
+
+bash
+Copy
+Edit
+pnpm start --characters="path/to/your/character.json"
+Connect with X
+In your character file:
+
+json
+Copy
+Edit
+"clients": ["twitter"]
+Additional Requirements
+If you see an error about image processing (Sharp), install it:
+
+bash
+Copy
+Edit
+pnpm install --include=optional sharp
+Automatic Start Script
+bash
+Copy
+Edit
+sh scripts/start.sh
+This script handles environment setup, dependencies, and character management. For more details, see our Start Script Guide.
+
+Deploy Eliza / DeepPolls in One Click
+Use Fleek to deploy Eliza in one click. This approach simplifies setup for non-developers. You can:
+
+Start with a template
+Build a character file from scratch
+Upload a pre-made character file
+Click here to get started!
+
+Community & Contact
+GitHub Issues – Report bugs or feature requests.
+Discord – Share applications and chat with the community.
+Citation
+We now have a paper you can cite for the Eliza OS:
+
+bibtex
+Copy
+Edit
+@article{walters2025eliza,
+  title={Eliza: A Web3 friendly AI Agent Operating System},
+  author={Walters, Shaw and Gao, Sam and Nerd, Shakker and Da, Feng and Williams, Warren and Meng, Ting-Chien and Han, Hunter and He, Frank and Zhang, Allen and Wu, Ming and others},
+  journal={arXiv preprint arXiv:2501.06781},
+  year={2025}
+}
+Contributors
+<a href="https://github.com/elizaos/eliza/graphs/contributors"> <img src="https://contrib.rocks/image?repo=elizaos/eliza" alt="Eliza project contributors" /> </a>
+Star History
+
+
+Copy
+Edit
