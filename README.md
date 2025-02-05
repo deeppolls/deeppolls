@@ -48,11 +48,13 @@ DeepPolls is more than a framework—it’s the future of AI shaped by the peopl
 ---
 
 ## Extra Documentation: `polls.js`
+```bash
 Twitter API → Poll Parser → Analysis Engine → Character Updater → Eliza Core
        │           │              │                  │
        └───▶ Cloudflare AI Gateway ◀──┘           Git Versioning
                      │
                Monitoring Dashboard
+```
 The following TypeScript example (`polls.ts`) demonstrates how DeepPolls integrates with OpenAI for Chat Completion.
 
 ```ts
