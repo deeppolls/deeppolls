@@ -1,12 +1,12 @@
 # DeepPolls: Powered by Eliza 🤖
 
 <div align="center">
-  <img src="./docs/static/img/eliza_banner.jpg" alt="Eliza Banner" width="100%" />
+  <img src="./docs/static/img/deeppolls-ai-banner.png" alt="Eliza Banner" width="100%" />
 </div>
 
 <div align="center">
 
-📑 [Technical Report](https://arxiv.org/pdf/2501.06781) |  📖 [Documentation](https://elizaos.github.io/eliza/) | 🎯 [Examples](https://github.com/thejoven/awesome-eliza)
+| 📖 [Documentation](https://deeppolls.gitbook.io/deeppolls-ai) | 
 
 </div>
 
@@ -48,7 +48,11 @@ DeepPolls is more than a framework—it’s the future of AI shaped by the peopl
 ---
 
 ## Extra Documentation: `polls.js`
-
+Twitter API → Poll Parser → Analysis Engine → Character Updater → Eliza Core
+       │           │              │                  │
+       └───▶ Cloudflare AI Gateway ◀──┘           Git Versioning
+                     │
+               Monitoring Dashboard
 The following TypeScript example (`polls.ts`) demonstrates how DeepPolls integrates with OpenAI for Chat Completion.
 
 ```ts
