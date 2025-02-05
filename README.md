@@ -147,7 +147,7 @@ async function runExample() {
   }
 }
 
-runExample();
+```
 In a real-world scenario, you would:
 
 Fetch the latest poll from Twitter instead of using a hardcoded pollExample.
