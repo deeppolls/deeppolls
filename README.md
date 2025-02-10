@@ -148,7 +148,7 @@ async function runExample() {
 }
 ```
 
-### In a Real-World Scenario
+### How it works
 
 1. **Fetch the latest poll** from Twitter instead of using a hardcoded `pollExample`.
 2. Pass the resulting poll object to `analyzePollWithChatGPT`.
